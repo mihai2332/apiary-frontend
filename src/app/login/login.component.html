@@ -1,3 +1,27 @@
-<p>
-  login works!
-</p>
+<div *ngIf="isLoggedIn">
+  Logged in as {{roles}}.
+</div>
+
+<mat-card class="loginElement">
+  <form [formGroup]="loginFormGroup">
+      <mat-form-field class="loginElement">
+        <input matInput formControlName="username" placeholder="Username">
+        <!--<mat-error *ngIf=".submitted && username.invalid">-->
+        <!--Username is required!-->
+        <!--</mat-error>-->
+      </mat-form-field>
+
+      <mat-form-field class="loginElement">
+        <input matInput type="password" formControlName="password" placeholder="Password">
+      </mat-form-field>
+
+      <button mat-raised-button type="submit" color="primary" class="loginElement"
+              (click)="login()">Login
+      </button>
+  </form>
+  <div class="signupElement"><p>Don't have an account?</p>
+    <a mat-raised-button href="signup" color="accent">Sign Up</a>
+  </div>
+</mat-card>
+
+
