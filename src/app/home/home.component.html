@@ -1,10 +1,12 @@
-<div *ngIf="info.token; else loggedOut">
-  <h5 class="text-primary">Your Information</h5>
-  <p>
-    <strong>Username:</strong> {{info.username}}<br/>
-    <strong>Roles:</strong> {{info.authorities}}<br />
-    <strong>Token:</strong> {{info.token}}.
-  </p>
+<div *ngIf="currentUserInfo.token; else loggedOut">
+  <!--{{currentUserInfo.token}}-->
+  <div *ngIf="modules.length > 0; else emptyModules">
+    <h5 class="text-primary">Your Information</h5>
+    <mat-card class="centerElement" *ngFor="let module of modules">{{module.name}}</mat-card>
+  </div>
+  <ng-template #emptyModules>
+    <app-add-module></app-add-module>
+  </ng-template>
   <button class="btn btn-secondary" (click)="logout()">Logout</button>
 </div>
 

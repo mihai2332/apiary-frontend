@@ -1,0 +1,7 @@
+.routerBar{
+  width: 100%;
+  display: flex;
+}
+.routerButton{
+  margin: 1%;
+}

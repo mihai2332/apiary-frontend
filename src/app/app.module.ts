@@ -19,6 +19,7 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AddModuleComponent } from './add-module/add-module.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    AddModuleComponent,
   ],
   imports: [
     BrowserModule,

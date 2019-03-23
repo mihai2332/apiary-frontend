@@ -1,0 +1,12 @@
+<h3 class="centerElement">No modules available</h3>
+<h4 class="centerElement">Add some scanning the QR code on the package or enter it manually:</h4>
+<mat-card class="centerElement">
+  <form [formGroup]="attachModuleFormGroup">
+    <mat-form-field class="centerElement">
+      <input matInput formControlName="uuid" placeholder="UUID">
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary" class="centerElement"
+            (click)="addModule()">Add
+    </button>
+  </form>
+</mat-card>

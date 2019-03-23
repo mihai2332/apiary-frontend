@@ -2,20 +2,20 @@
   Logged in as {{roles}}.
 </div>
 
-<mat-card class="loginElement">
+<mat-card class="centerElement">
   <form [formGroup]="loginFormGroup">
-      <mat-form-field class="loginElement">
+      <mat-form-field class="centerElement">
         <input matInput formControlName="username" placeholder="Username">
         <!--<mat-error *ngIf=".submitted && username.invalid">-->
         <!--Username is required!-->
         <!--</mat-error>-->
       </mat-form-field>
 
-      <mat-form-field class="loginElement">
+      <mat-form-field class="centerElement">
         <input matInput type="password" formControlName="password" placeholder="Password">
       </mat-form-field>
 
-      <button mat-raised-button type="submit" color="primary" class="loginElement"
+      <button mat-raised-button type="submit" color="primary" class="centerElement"
               (click)="login()">Login
       </button>
   </form>

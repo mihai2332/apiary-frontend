@@ -3,6 +3,7 @@ import {AuthLoginInfo} from '../auth/model/login-info';
 import {AuthService} from '../auth/auth.service';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,10 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private fb: FormBuilder) {
+  constructor(private authService: AuthService,
+              private tokenStorage: TokenStorageService,
+              private fb: FormBuilder,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -46,7 +50,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
-        this.reloadPage();
+        this.redirect();
       },
       error => {
         console.log(error);
@@ -56,7 +60,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  reloadPage() {
-    window.location.reload();
+  redirect() {
+    this.router.navigate(['/home']);
   }
 }
