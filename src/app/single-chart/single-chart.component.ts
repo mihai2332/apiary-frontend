@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {MeasurementService} from '../services/measurement.service';
+import {SensorChart} from '../model/SensorChart';
 
 @Component({
   selector: 'app-single-chart',
@@ -11,6 +12,7 @@ import {MeasurementService} from '../services/measurement.service';
 export class SingleChartComponent implements OnInit {
   formGroup: FormGroup;
   sensorName: string;
+  moduleUUID: string;
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               private measurementService: MeasurementService) { }
@@ -18,6 +20,7 @@ export class SingleChartComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.sensorName = params.get('name');
+      this.moduleUUID = params.get('uuid');
     });
     this.formGroup = this.fb.group({
       date: new FormControl()
@@ -25,7 +28,13 @@ export class SingleChartComponent implements OnInit {
   }
 
   submit() {
-    this.measurementService.getMeasurementsWithinRange(this.formGroup.get('date').value);
-    console.log(this.formGroup.get('date').value);
+    const sensorDTO: SensorChart = {
+      moduleUUID: this.moduleUUID,
+      sensorName: this.sensorName,
+      beginDate: this.formGroup.get('date').value.begin,
+      endDate: this.formGroup.get('date').value.end
+    };
+    this.measurementService.getMeasurementsWithinRange(sensorDTO);
+    console.log(sensorDTO);
   }
 }

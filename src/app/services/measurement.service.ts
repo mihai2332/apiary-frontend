@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {Module} from '../model/Module';
 import {HttpClient} from '@angular/common/http';
 import {Sensor} from '../model/Sensor';
+import {SensorChart} from '../model/SensorChart';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class MeasurementService {
     return this.http.get<Sensor[]>(this.URL + uuid + '/sensor');
   }
 
-  getMeasurementsWithinRange(range: any) {
+  getMeasurementsWithinRange(sensor: SensorChart) {
 
   }
 }

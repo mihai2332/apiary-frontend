@@ -20,11 +20,11 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'sensor/:uuid',
+    path: 'module/:uuid',
     component: MeasurementChartsComponent
   },
   {
-    path: 'measurement/:name',
+    path: 'sensor/:uuid/:name',
     component: SingleChartComponent
   },
   {

@@ -31,6 +31,6 @@ export class HomeComponent implements OnInit {
   }
 
   showMeasurements(module: Module) {
-    this.router.navigate(['/sensor', module.uuid]);
+    this.router.navigate(['/module', module.uuid]);
   }
 }

@@ -28,7 +28,7 @@ export class MeasurementChartsComponent implements OnInit {
   }
 
   showChart(sensor: Sensor) {
-    this.router.navigate(['/measurement', sensor.sensorType]);
+    this.router.navigate(['/sensor', this.uuid, sensor.sensorType]);
 
   }
 }
