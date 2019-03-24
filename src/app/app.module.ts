@@ -11,7 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule, MatIconModule,
   MatInputModule, MatMenuModule, MatProgressSpinnerModule,
@@ -20,6 +20,9 @@ import {
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AddModuleComponent } from './add-module/add-module.component';
+import { MeasurementChartsComponent } from './measurement-charts/measurement-charts.component';
+import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
+import { SingleChartComponent } from './single-chart/single-chart.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import { AddModuleComponent } from './add-module/add-module.component';
     RegisterComponent,
     HomeComponent,
     AddModuleComponent,
+    MeasurementChartsComponent,
+    SingleChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,9 @@ import { AddModuleComponent } from './add-module/add-module.component';
     MatProgressSpinnerModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    SatDatepickerModule,
+    SatNativeDateModule,
+    MatDatepickerModule,
 
   ],
   providers: [httpInterceptorProviders],

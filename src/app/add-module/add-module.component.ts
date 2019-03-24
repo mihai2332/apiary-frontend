@@ -16,11 +16,16 @@ export class AddModuleComponent implements OnInit {
 
   ngOnInit() {
     this.attachModuleFormGroup = this.fb.group({
-      uuid: new FormControl()
+      uuid: new FormControl(),
+      name: new FormControl()
     });
   }
 
   addModule() {
-    this.measurementService.addModule(this.attachModuleFormGroup.get('uuid').value).subscribe();
+    const module = {
+      uuid: this.attachModuleFormGroup.get('uuid').value,
+      name: this.attachModuleFormGroup.get('name').value
+    };
+    this.measurementService.addModule(module).subscribe();
   }
 }

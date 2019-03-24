@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {MeasurementService} from '../services/measurement.service';
 import {Module} from '../model/Module';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ export class HomeComponent implements OnInit {
   modules: Module[] = [];
 
   constructor(private token: TokenStorageService,
-              private measurementService: MeasurementService) {
+              private measurementService: MeasurementService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -26,5 +28,9 @@ export class HomeComponent implements OnInit {
   logout() {
     this.token.signOut();
     window.location.reload();
+  }
+
+  showMeasurements(module: Module) {
+    this.router.navigate(['/sensor', module.uuid]);
   }
 }

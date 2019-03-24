@@ -1,0 +1,13 @@
+<form [formGroup]="formGroup">
+  <mat-form-field>
+    <input matInput
+           placeholder="Choose a date"
+           [satDatepicker]="picker"
+           formControlName="date">
+    <sat-datepicker #picker [rangeMode]="true"
+                    [closeAfterSelection]="false">
+    </sat-datepicker>
+    <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
+  </mat-form-field>
+  <button mat-button type="submit" (click)="submit()">Ok</button>
+</form>

@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import {MeasurementChartsComponent} from './measurement-charts/measurement-charts.component';
+import {SingleChartComponent} from './single-chart/single-chart.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
   {
     path: 'signup',
     component: RegisterComponent
+  },
+  {
+    path: 'sensor/:uuid',
+    component: MeasurementChartsComponent
+  },
+  {
+    path: 'measurement/:name',
+    component: SingleChartComponent
   },
   {
     path: '',

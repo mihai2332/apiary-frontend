@@ -2,7 +2,7 @@
   <!--{{currentUserInfo.token}}-->
   <div *ngIf="modules.length > 0; else emptyModules">
     <h5 class="text-primary">Your Information</h5>
-    <mat-card class="centerElement" *ngFor="let module of modules">{{module.name}}</mat-card>
+    <mat-card class="centerElement" *ngFor="let module of modules" (click)="showMeasurements(module)">{{module.name}}</mat-card>
   </div>
   <ng-template #emptyModules>
     <app-add-module></app-add-module>
