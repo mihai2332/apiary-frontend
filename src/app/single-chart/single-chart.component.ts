@@ -1,10 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {MeasurementService} from '../services/measurement.service';
 import {SensorChart} from '../model/SensorChart';
-import {ChartDataSets, ChartOptions} from 'chart.js';
-import {BaseChartDirective, Color, Label} from 'ng2-charts';
 import {Measurement} from '../model/Measurement';
 
 @Component({
@@ -17,11 +15,6 @@ export class SingleChartComponent implements OnInit {
   sensorName: string;
   moduleUUID: string;
   measurements: Measurement[] = [];
-
-  // public lineChartData: ChartDataSets[] = [
-  //   { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' }
-  // ];
-  // public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
@@ -47,7 +40,6 @@ export class SingleChartComponent implements OnInit {
     };
     this.measurementService.getMeasurementsWithinRange(sensorDTO).subscribe(measurements => {
       this.measurements = measurements;
-      // console.log(this.sensorName);
     });
   }
 }
