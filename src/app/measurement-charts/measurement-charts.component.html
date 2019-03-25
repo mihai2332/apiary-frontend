@@ -1,1 +1,7 @@
-<mat-card *ngFor="let sensor of sensors" (click)="showChart(sensor)">{{sensor.sensorType}}</mat-card>
+<div style="display: block">
+  <canvas baseChart
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="options"
+          chartType="line"></canvas>
+</div>

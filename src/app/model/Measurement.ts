@@ -1,4 +1,4 @@
 export interface Measurement {
   value: string;
-  creationDate: Date;
+  creationDate: string;
 }

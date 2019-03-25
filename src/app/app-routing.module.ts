@@ -5,6 +5,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {MeasurementChartsComponent} from './measurement-charts/measurement-charts.component';
 import {SingleChartComponent} from './single-chart/single-chart.component';
+import {SensorsComponent} from './sensors/sensors.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'module/:uuid',
-    component: MeasurementChartsComponent
+    component: SensorsComponent
   },
   {
     path: 'sensor/:uuid/:name',

@@ -4,6 +4,7 @@ import {Module} from '../model/Module';
 import {HttpClient} from '@angular/common/http';
 import {Sensor} from '../model/Sensor';
 import {SensorChart} from '../model/SensorChart';
+import {Measurement} from '../model/Measurement';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class MeasurementService {
     return this.http.get<Sensor[]>(this.URL + uuid + '/sensor');
   }
 
-  getMeasurementsWithinRange(sensor: SensorChart) {
-
+  getMeasurementsWithinRange(sensorChart: SensorChart) {
+    return this.http.post<Measurement[]>(this.URL + 'measurement', sensorChart);
   }
 }

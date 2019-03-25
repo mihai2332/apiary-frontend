@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MeasurementService} from '../services/measurement.service';
-import {Sensor} from '../model/Sensor';
+import {Component, Input, OnInit} from '@angular/core';
+import {ChartDataSets} from 'chart.js';
+import {Label} from 'ng2-charts';
+import {Measurement} from '../model/Measurement';
 
 @Component({
   selector: 'app-measurement-charts',
@@ -9,26 +9,45 @@ import {Sensor} from '../model/Sensor';
   styleUrls: ['./measurement-charts.component.css']
 })
 export class MeasurementChartsComponent implements OnInit {
-  uuid: string;
-  sensors: Sensor[] = [];
+  @Input() measurements: Measurement[];
+  @Input() sensorName: string;
 
-  constructor(private route: ActivatedRoute,
-              private measurementService: MeasurementService,
-              private router: Router) {
+  public lineChartData: ChartDataSets[] = [];
+  public lineChartLabels: Label[] = [];
+  public options: any = {
+    scales : {
+      yAxes: [{
+        ticks: {
+          beginAtZero: false,
+          stepValue: 10,
+          steps: 20,
+          max : 500,
+        }
+      }]
+    }
+  };
+
+  constructor() {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.uuid = params.get('uuid');
-    });
-    this.measurementService.getSensors(this.uuid).subscribe(sensors => {
-      this.sensors = sensors;
-      console.log(this.sensors);
-    });
+    this.setupChart();
   }
 
-  showChart(sensor: Sensor) {
-    this.router.navigate(['/sensor', this.uuid, sensor.sensorType]);
+  private setupChart() {
+    const dataPoints: number[] = [];
+    const labels: string[] = [];
+    this.measurements.forEach(measurement => {
+      dataPoints.push(Number(measurement.value));
+      labels.push(this.formatLabel(measurement.creationDate));
+    });
+    const chartData = {data: dataPoints, label: this.sensorName};
+    this.lineChartData.push(chartData);
+    this.lineChartLabels = labels;
+  }
 
+  private formatLabel(creationDate: string): string {
+    const date: Date = new Date(creationDate);
+    return date.getHours() + ':' + date.getUTCMinutes();
   }
 }

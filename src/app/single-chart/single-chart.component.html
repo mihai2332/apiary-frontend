@@ -11,3 +11,15 @@
   </mat-form-field>
   <button mat-button type="submit" (click)="submit()">Ok</button>
 </form>
+
+<app-measurement-charts *ngIf="measurements.length > 0 && sensorName"
+                        [measurements]="measurements"
+                        [sensorName]="sensorName">
+
+</app-measurement-charts>
+<!--<div style="display: block">-->
+<!--<canvas baseChart-->
+        <!--[datasets]="lineChartData"-->
+        <!--[labels]="lineChartLabels"-->
+        <!--chartType="line"></canvas>-->
+<!--</div>-->

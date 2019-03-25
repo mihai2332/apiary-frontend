@@ -23,6 +23,8 @@ import { AddModuleComponent } from './add-module/add-module.component';
 import { MeasurementChartsComponent } from './measurement-charts/measurement-charts.component';
 import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import { SingleChartComponent } from './single-chart/single-chart.component';
+import {ChartsModule} from 'ng2-charts';
+import { SensorsComponent } from './sensors/sensors.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { SingleChartComponent } from './single-chart/single-chart.component';
     AddModuleComponent,
     MeasurementChartsComponent,
     SingleChartComponent,
+    SensorsComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import { SingleChartComponent } from './single-chart/single-chart.component';
     SatDatepickerModule,
     SatNativeDateModule,
     MatDatepickerModule,
-
+    ChartsModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
