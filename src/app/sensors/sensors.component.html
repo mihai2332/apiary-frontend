@@ -1,5 +1,9 @@
-<div *ngIf="authToken; else loggedOut">
-  <mat-card *ngFor="let sensor of sensors" (click)="showChart(sensor)">{{sensor.sensorType}}</mat-card>
+<app-loading-spinner *ngIf="authToken" [isLoading]="isLoading"></app-loading-spinner>
+
+<div *ngIf="!isLoading">
+  <div *ngIf="authToken; else loggedOut">
+    <mat-card *ngFor="let sensor of sensors" (click)="showChart(sensor)">{{sensor.sensorType}}</mat-card>
+  </div>
 </div>
 
 <ng-template #loggedOut>

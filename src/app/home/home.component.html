@@ -1,4 +1,4 @@
-<app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
+<app-loading-spinner *ngIf="currentUserInfo.token" [isLoading]="isLoading"></app-loading-spinner>
 <div *ngIf="currentUserInfo.token; else loggedOut">
 
 

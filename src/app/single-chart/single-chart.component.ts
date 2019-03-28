@@ -17,6 +17,7 @@ export class SingleChartComponent implements OnInit {
   moduleUUID: string;
   measurements: Measurement[] = [];
   authToken: any;
+  isLoading = false;
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
@@ -36,6 +37,7 @@ export class SingleChartComponent implements OnInit {
   }
 
   submit() {
+    this.isLoading = true;
     const sensorDTO: SensorChart = {
       moduleUUID: this.moduleUUID,
       sensorName: this.sensorName,
@@ -44,6 +46,7 @@ export class SingleChartComponent implements OnInit {
     };
     this.measurementService.getMeasurementsWithinRange(sensorDTO).subscribe(measurements => {
       this.measurements = measurements;
+      this.isLoading = false;
     });
   }
 }

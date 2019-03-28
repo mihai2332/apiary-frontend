@@ -13,7 +13,8 @@
     <button mat-button type="submit" (click)="submit()">Ok</button>
   </form>
 
-  <app-measurement-charts *ngIf="measurements.length > 0 && sensorName"
+  <app-loading-spinner *ngIf="authToken" [isLoading]="isLoading"></app-loading-spinner>
+  <app-measurement-charts *ngIf="measurements.length > 0 && sensorName && !isLoading"
                           [measurements]="measurements"
                           [sensorName]="sensorName">
 

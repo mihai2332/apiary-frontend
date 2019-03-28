@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ChartDataSets} from 'chart.js';
-import {Label} from 'ng2-charts';
+import {Color, Label} from 'ng2-charts';
 import {Measurement} from '../model/Measurement';
 
 @Component({
@@ -26,6 +26,15 @@ export class MeasurementChartsComponent implements OnInit {
       }]
     }
   };
+  public lineChartColors: Color[] = [
+    { // amber
+      backgroundColor: 'rgba(253,216,64,0.4)',
+      borderColor: 'rgba(253,216,64,1)',
+      pointBackgroundColor: 'rgba(253,216,64,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(253,216,64,0.8)'
+    }];
 
   constructor() {
   }

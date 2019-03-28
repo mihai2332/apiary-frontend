@@ -13,6 +13,7 @@ export class SensorsComponent implements OnInit {
   uuid: string;
   sensors: Sensor[] = [];
   authToken: any;
+  isLoading = true;
 
   constructor(private route: ActivatedRoute,
               private token: TokenStorageService,
@@ -27,6 +28,7 @@ export class SensorsComponent implements OnInit {
     });
     this.measurementService.getSensors(this.uuid).subscribe(sensors => {
       this.sensors = sensors;
+      this.isLoading = false;
     });
   }
 
