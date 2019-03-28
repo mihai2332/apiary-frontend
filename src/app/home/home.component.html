@@ -1,23 +1,30 @@
+<app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
 <div *ngIf="currentUserInfo.token; else loggedOut">
-  <!--{{currentUserInfo.token}}-->
-  <div *ngIf="!boolFlagAdd">
-    <div *ngIf="modules.length > 0; else emptyModules">
-      <h4 class="text-primary">Your modules:</h4>
-      <mat-card class="centerElement" *ngFor="let module of modules"
-                (click)="showMeasurements(module)">{{module.name}}</mat-card>
-    </div>
-  </div>
-  <div *ngIf="boolFlagAdd">
-    <app-add-module></app-add-module>
-  </div>
-  <button *ngIf="!boolFlagAdd" mat-raised-button (click)="changeAddFlag(true)">Add module</button>
-  <button *ngIf="boolFlagAdd" mat-raised-button (click)="changeAddFlag(false)">Show modules</button>
-  <br>
 
-  <ng-template #emptyModules>
-    <app-add-module></app-add-module>
-  </ng-template>
-  <button mat-button class="btn btn-secondary" (click)="logout()">Logout</button>
+
+  <div *ngIf="!isLoading">
+    <button *ngIf="!boolFlagAdd" mat-mini-fab (click)="changeAddFlag(true)" class="addButton">+</button>
+    <button *ngIf="boolFlagAdd" mat-raised-button (click)="showModules()" class="addButton">Show modules</button>
+
+    <div *ngIf="!boolFlagAdd">
+      <div *ngIf="modules.length > 0; else emptyModules">
+        <h4 class="text-primary">Your modules:</h4>
+        <mat-card class="centerElement" *ngFor="let module of modules"
+                  (click)="showMeasurements(module)">{{module.name}}</mat-card>
+      </div>
+    </div>
+    <div *ngIf="boolFlagAdd">
+      <app-add-module (requestFlag)="changeRequestFlag($event)"></app-add-module>
+    </div>
+    <br>
+
+    <ng-template #emptyModules>
+      <app-add-module></app-add-module>
+    </ng-template>
+    <button mat-button class="btn btn-secondary" (click)="logout()">Logout</button>
+  </div>
+
+
 </div>
 
 <ng-template #loggedOut>

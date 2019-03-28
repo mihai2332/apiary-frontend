@@ -27,7 +27,6 @@ export class SensorsComponent implements OnInit {
     });
     this.measurementService.getSensors(this.uuid).subscribe(sensors => {
       this.sensors = sensors;
-      console.log(this.sensors);
     });
   }
 

@@ -25,6 +25,7 @@ import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import { SingleChartComponent } from './single-chart/single-chart.component';
 import {ChartsModule} from 'ng2-charts';
 import { SensorsComponent } from './sensors/sensors.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { SensorsComponent } from './sensors/sensors.component';
     MeasurementChartsComponent,
     SingleChartComponent,
     SensorsComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,

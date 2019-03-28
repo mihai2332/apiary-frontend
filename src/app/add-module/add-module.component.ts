@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {MeasurementService} from '../services/measurement.service';
 
@@ -8,6 +8,7 @@ import {MeasurementService} from '../services/measurement.service';
   styleUrls: ['./add-module.component.css']
 })
 export class AddModuleComponent implements OnInit {
+  @Output() requestFlag = new EventEmitter();
   attachModuleFormGroup: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -26,6 +27,8 @@ export class AddModuleComponent implements OnInit {
       uuid: this.attachModuleFormGroup.get('uuid').value,
       name: this.attachModuleFormGroup.get('name').value
     };
-    this.measurementService.addModule(module).subscribe();
+    this.measurementService.addModule(module).subscribe(_ => {
+      this.requestFlag.emit(true);
+    });
   }
 }

@@ -1,0 +1,10 @@
+.container {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.progressBar {
+  width: 100%;
+  position: fixed;
+}

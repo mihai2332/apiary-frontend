@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit {
   currentUserInfo: any;
   modules: Module[] = [];
   boolFlagAdd = false;
+  requestFlag = false;
+  isLoading = true;
 
   constructor(private token: TokenStorageService,
               private measurementService: MeasurementService,
@@ -23,6 +25,7 @@ export class HomeComponent implements OnInit {
     this.currentUserInfo = {token: this.token.getToken()};
     this.measurementService.getModules().subscribe(modules => {
       this.modules = modules;
+      this.isLoading = false;
     });
   }
 
@@ -37,5 +40,25 @@ export class HomeComponent implements OnInit {
 
   changeAddFlag(flag: boolean) {
     this.boolFlagAdd = flag;
+  }
+
+  showModules() {
+    if (!this.requestFlag) {
+      this.boolFlagAdd = false;
+      return;
+    } else {
+      this.isLoading = true;
+      this.measurementService.getModules().subscribe(modules => {
+        this.modules = modules;
+        this.isLoading = false;
+        this.boolFlagAdd = false;
+      });
+      this.requestFlag = false;
+      return;
+    }
+  }
+
+  changeRequestFlag(event) {
+    this.requestFlag = event;
   }
 }

@@ -1,3 +1,7 @@
-.cardColor{
+.cardColor {
   background-color: aqua;
+}
+
+.addButton {
+  float: right;
 }
