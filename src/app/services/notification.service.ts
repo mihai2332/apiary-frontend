@@ -15,6 +15,7 @@ export class NotificationService {
       this.snackBar.open(message, 'Dismiss', {
         verticalPosition: 'bottom',
         horizontalPosition: 'center',
+        duration: 1400
       });
     });
   }
