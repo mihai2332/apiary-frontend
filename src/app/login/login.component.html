@@ -2,13 +2,13 @@
   <form [formGroup]="loginFormGroup">
       <mat-form-field class="centerElement">
         <input matInput formControlName="username" placeholder="Username">
-        <!--<mat-error *ngIf=".submitted && username.invalid">-->
-        <!--Username is required!-->
-        <!--</mat-error>-->
+        <mat-error *ngIf="username.invalid">The username is required!</mat-error>
+
       </mat-form-field>
 
-      <mat-form-field class="centerElement">
+      <mat-form-field class="centerElement pwElement">
         <input matInput type="password" formControlName="password" placeholder="Password">
+        <mat-error *ngIf="password.invalid">The password is required!</mat-error>
       </mat-form-field>
 
       <button mat-raised-button type="submit" color="primary" class="centerElement"

@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import {AuthLoginInfo} from '../auth/model/login-info';
 import {AuthService} from '../auth/auth.service';
 import {TokenStorageService} from '../auth/token-storage.service';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {NotificationService} from '../services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService,
               private tokenStorage: TokenStorageService,
               private fb: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private injector: Injector) {
   }
 
   ngOnInit() {
@@ -30,8 +32,8 @@ export class LoginComponent implements OnInit {
       this.roles = this.tokenStorage.getAuthorities();
     }
     this.loginFormGroup = this.fb.group({
-      username: new FormControl(),
-      password: new FormControl()
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
     });
   }
 
@@ -40,7 +42,15 @@ export class LoginComponent implements OnInit {
       this.loginFormGroup.get('username').value,
       this.loginFormGroup.get('password').value
     );
+    if (this.loginInfo.username === '' || this.loginInfo.password === '') {
+      const notificationService = this.injector.get(NotificationService);
+      notificationService.notify('Username or Password not filled!');
+    } else {
+      this.authenticate();
+    }
+  }
 
+  private authenticate() {
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
@@ -62,5 +72,13 @@ export class LoginComponent implements OnInit {
 
   redirect() {
     this.router.navigate(['/home']);
+  }
+
+  get password() {
+    return this.loginFormGroup.get('password');
+  }
+
+  get username() {
+    return this.loginFormGroup.get('username');
   }
 }

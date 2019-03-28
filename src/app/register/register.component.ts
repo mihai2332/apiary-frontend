@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import {SignUpInfo} from '../auth/model/sigup-info';
 import {AuthService} from '../auth/auth.service';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {NotificationService} from '../services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -15,14 +16,17 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private fb: FormBuilder) { }
+  constructor(private authService: AuthService,
+              private fb: FormBuilder,
+              private injector: Injector) {
+  }
 
   ngOnInit() {
     this.registerFormGroup = this.fb.group({
-      username: new FormControl(),
-      name: new FormControl(),
-      email: new FormControl(),
-      password: new FormControl()
+      username: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
     });
   }
 
@@ -33,7 +37,15 @@ export class RegisterComponent implements OnInit {
       this.registerFormGroup.get('email').value,
       this.registerFormGroup.get('password').value
     );
+    if (this.signupInfo.name === '' || this.signupInfo.username === '' || this.signupInfo.email === '' || this.signupInfo.password === '') {
+      const notificationService = this.injector.get(NotificationService);
+      notificationService.notify('All fields must be filled!');
+    } else {
+      this.signUp();
+    }
+  }
 
+  private signUp() {
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
         console.log(data);
@@ -46,5 +58,21 @@ export class RegisterComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     );
+  }
+
+  get username() {
+    return this.registerFormGroup.get('username');
+  }
+
+  get name() {
+    return this.registerFormGroup.get('name');
+  }
+
+  get email() {
+    return this.registerFormGroup.get('email');
+  }
+
+  get password() {
+    return this.registerFormGroup.get('password');
   }
 }
