@@ -29,11 +29,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  logout() {
-    this.token.signOut();
-    window.location.reload();
-  }
-
   showMeasurements(module: Module) {
     this.router.navigate(['/module', module.uuid]);
   }
