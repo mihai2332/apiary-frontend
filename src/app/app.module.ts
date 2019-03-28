@@ -14,7 +14,7 @@ import {
   MatCardModule, MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule, MatIconModule,
-  MatInputModule, MatMenuModule, MatProgressSpinnerModule,
+  MatInputModule, MatMenuModule, MatProgressSpinnerModule, MatSnackBarModule,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
@@ -61,6 +61,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     SatNativeDateModule,
     MatDatepickerModule,
     ChartsModule,
+    MatSnackBarModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

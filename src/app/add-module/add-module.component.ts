@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Component, EventEmitter, Injector, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MeasurementService} from '../services/measurement.service';
+import {NotificationService} from '../services/notification.service';
 
 @Component({
   selector: 'app-add-module',
@@ -12,13 +13,14 @@ export class AddModuleComponent implements OnInit {
   attachModuleFormGroup: FormGroup;
 
   constructor(private fb: FormBuilder,
-              private measurementService: MeasurementService) {
+              private measurementService: MeasurementService,
+              private injector: Injector) {
   }
 
   ngOnInit() {
     this.attachModuleFormGroup = this.fb.group({
-      uuid: new FormControl(),
-      name: new FormControl()
+      uuid: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required])
     });
   }
 
@@ -27,8 +29,21 @@ export class AddModuleComponent implements OnInit {
       uuid: this.attachModuleFormGroup.get('uuid').value,
       name: this.attachModuleFormGroup.get('name').value
     };
-    this.measurementService.addModule(module).subscribe(_ => {
-      this.requestFlag.emit(true);
-    });
+    if (module.uuid === '' || module.name === '') {
+      const notificationService = this.injector.get(NotificationService);
+      notificationService.notify('UUID or Name not filled!');
+    } else {
+      this.measurementService.addModule(module).subscribe(_ => {
+        this.requestFlag.emit(true);
+      });
+    }
+  }
+
+  get uuid() {
+    return this.attachModuleFormGroup.get('uuid');
+  }
+
+  get name() {
+    return this.attachModuleFormGroup.get('name');
   }
 }
