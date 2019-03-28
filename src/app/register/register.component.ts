@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
     this.registerFormGroup = this.fb.group({
       username: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
     });
   }
@@ -37,7 +37,9 @@ export class RegisterComponent implements OnInit {
       this.registerFormGroup.get('email').value,
       this.registerFormGroup.get('password').value
     );
-    if (this.signupInfo.name === '' || this.signupInfo.username === '' || this.signupInfo.email === '' || this.signupInfo.password === '') {
+    if (this.signupInfo.name === '' || this.signupInfo.username === '' ||
+      this.signupInfo.email === '' || this.signupInfo.password === '' ||
+      this.email.hasError('email')) {
       const notificationService = this.injector.get(NotificationService);
       notificationService.notify('All fields must be filled!');
     } else {
@@ -74,5 +76,11 @@ export class RegisterComponent implements OnInit {
 
   get password() {
     return this.registerFormGroup.get('password');
+  }
+
+  getEmailErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' :
+      this.email.hasError('email') ? 'Not a valid email' :
+        '';
   }
 }
