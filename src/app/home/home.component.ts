@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class HomeComponent implements OnInit {
   currentUserInfo: any;
   modules: Module[] = [];
-  boolFlagAdd: boolean = false;
+  boolFlagAdd = false;
 
   constructor(private token: TokenStorageService,
               private measurementService: MeasurementService,
