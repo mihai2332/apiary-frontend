@@ -1,1 +1,7 @@
-<mat-card *ngFor="let sensor of sensors" (click)="showChart(sensor)">{{sensor.sensorType}}</mat-card>
+<div *ngIf="authToken; else loggedOut">
+  <mat-card *ngFor="let sensor of sensors" (click)="showChart(sensor)">{{sensor.sensorType}}</mat-card>
+</div>
+
+<ng-template #loggedOut>
+  <h3>Please login.</h3>
+</ng-template>

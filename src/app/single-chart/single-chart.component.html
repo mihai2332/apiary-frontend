@@ -1,19 +1,25 @@
-<form [formGroup]="formGroup">
-  <mat-form-field>
-    <input matInput
-           placeholder="Choose a date"
-           [satDatepicker]="picker"
-           formControlName="date">
-    <sat-datepicker #picker [rangeMode]="true"
-                    [closeAfterSelection]="false">
-    </sat-datepicker>
-    <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
-  </mat-form-field>
-  <button mat-button type="submit" (click)="submit()">Ok</button>
-</form>
+<div *ngIf="authToken; else loggedOut">
+  <form [formGroup]="formGroup">
+    <mat-form-field>
+      <input matInput
+             placeholder="Choose a date ->"
+             [satDatepicker]="picker"
+             formControlName="date">
+      <sat-datepicker #picker [rangeMode]="true"
+                      [closeAfterSelection]="false">
+      </sat-datepicker>
+      <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
+    </mat-form-field>
+    <button mat-button type="submit" (click)="submit()">Ok</button>
+  </form>
 
-<app-measurement-charts *ngIf="measurements.length > 0 && sensorName"
-                        [measurements]="measurements"
-                        [sensorName]="sensorName">
+  <app-measurement-charts *ngIf="measurements.length > 0 && sensorName"
+                          [measurements]="measurements"
+                          [sensorName]="sensorName">
 
-</app-measurement-charts>
+  </app-measurement-charts>
+</div>
+
+<ng-template #loggedOut>
+  <h3>Please login.</h3>
+</ng-template>

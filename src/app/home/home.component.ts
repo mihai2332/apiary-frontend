@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 export class HomeComponent implements OnInit {
   currentUserInfo: any;
   modules: Module[] = [];
+  boolFlagAdd: boolean = false;
 
   constructor(private token: TokenStorageService,
               private measurementService: MeasurementService,
@@ -32,5 +33,9 @@ export class HomeComponent implements OnInit {
 
   showMeasurements(module: Module) {
     this.router.navigate(['/module', module.uuid]);
+  }
+
+  changeAddFlag(flag: boolean) {
+    this.boolFlagAdd = flag;
   }
 }

@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {MeasurementService} from '../services/measurement.service';
 import {SensorChart} from '../model/SensorChart';
 import {Measurement} from '../model/Measurement';
+import {TokenStorageService} from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-single-chart',
@@ -15,13 +16,16 @@ export class SingleChartComponent implements OnInit {
   sensorName: string;
   moduleUUID: string;
   measurements: Measurement[] = [];
+  authToken: any;
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
-              private measurementService: MeasurementService) {
+              private measurementService: MeasurementService,
+              private token: TokenStorageService) {
   }
 
   ngOnInit() {
+    this.authToken = this.token.getToken();
     this.route.paramMap.subscribe(params => {
       this.sensorName = params.get('name');
       this.moduleUUID = params.get('uuid');

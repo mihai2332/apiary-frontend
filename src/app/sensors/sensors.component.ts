@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Sensor} from '../model/Sensor';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MeasurementService} from '../services/measurement.service';
+import {TokenStorageService} from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-sensors',
@@ -11,13 +12,16 @@ import {MeasurementService} from '../services/measurement.service';
 export class SensorsComponent implements OnInit {
   uuid: string;
   sensors: Sensor[] = [];
+  authToken: any;
 
   constructor(private route: ActivatedRoute,
+              private token: TokenStorageService,
               private measurementService: MeasurementService,
               private router: Router) {
   }
 
   ngOnInit() {
+    this.authToken = this.token.getToken();
     this.route.paramMap.subscribe(params => {
       this.uuid = params.get('uuid');
     });
