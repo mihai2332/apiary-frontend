@@ -4,7 +4,7 @@
 
   <div *ngIf="!isLoading">
     <button *ngIf="!boolFlagAdd" mat-mini-fab (click)="changeAddFlag(true)" class="addButton">+</button>
-    <button *ngIf="boolFlagAdd" mat-raised-button (click)="showModules()" class="addButton">Show modules</button>
+    <button *ngIf="boolFlagAdd" mat-raised-button (click)="showModules()" [disabled]="isRequestInProgress" class="addButton">Show modules</button>
 
     <div *ngIf="!boolFlagAdd">
       <div *ngIf="modules.length > 0; else emptyModules">
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div *ngIf="boolFlagAdd">
-      <app-add-module (requestFlag)="changeRequestFlag($event)"></app-add-module>
+      <app-add-module (requestFlag)="changeRequestFlag($event)" (isRequestInProgress)="disableButton($event)"></app-add-module>
     </div>
     <br>
 

@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   boolFlagAdd = false;
   requestFlag = false;
   isLoading = true;
+  isRequestInProgress: boolean;
 
   constructor(private token: TokenStorageService,
               private measurementService: MeasurementService,
@@ -55,5 +56,9 @@ export class HomeComponent implements OnInit {
 
   changeRequestFlag(event) {
     this.requestFlag = event;
+  }
+
+  disableButton(event) {
+    this.isRequestInProgress = event;
   }
 }

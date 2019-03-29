@@ -10,7 +10,9 @@ import {NotificationService} from '../services/notification.service';
 })
 export class AddModuleComponent implements OnInit {
   @Output() requestFlag = new EventEmitter();
+  @Output() isRequestInProgress = new EventEmitter();
   attachModuleFormGroup: FormGroup;
+  isLoading = false;
 
   constructor(private fb: FormBuilder,
               private measurementService: MeasurementService,
@@ -25,6 +27,8 @@ export class AddModuleComponent implements OnInit {
   }
 
   addModule() {
+    this.isLoading = true;
+    this.isRequestInProgress.emit(true);
     const module = {
       uuid: this.attachModuleFormGroup.get('uuid').value,
       name: this.attachModuleFormGroup.get('name').value
@@ -35,6 +39,8 @@ export class AddModuleComponent implements OnInit {
     } else {
       this.measurementService.addModule(module).subscribe(_ => {
         this.requestFlag.emit(true);
+        this.isLoading = false;
+        this.isRequestInProgress.emit(false);
       });
     }
   }
