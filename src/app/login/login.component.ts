@@ -60,11 +60,13 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
+        this.authService.isLoggedIn.emit(true);
         this.redirect();
       },
       error => {
         console.log(error);
         this.errorMessage = error.error.message;
+        this.authService.isLoggedIn.emit(false);
         this.isLoginFailed = true;
       }
     );
