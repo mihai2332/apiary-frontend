@@ -65,6 +65,12 @@ export class HomeComponent implements OnInit {
   }
 
   deleteModule(module: Module) {
-    this.measurementService.deleteModule(module).subscribe();
+    this.isLoading = true;
+    this.measurementService.deleteModule(module).subscribe(_ => {
+      this.measurementService.getModules().subscribe(modules => {
+        this.modules = modules;
+        this.isLoading = false;
+      });
+    });
   }
 }
