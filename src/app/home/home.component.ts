@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  showMeasurements(module: Module) {
+  showSensors(module: Module) {
     this.router.navigate(['/module', module.uuid]);
   }
 

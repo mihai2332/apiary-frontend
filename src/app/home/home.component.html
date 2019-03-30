@@ -9,8 +9,8 @@
     <div *ngIf="!boolFlagAdd">
       <div *ngIf="modules.length > 0; else emptyModules">
         <h4 class="text-primary">Your modules:</h4>
-        <mat-card class="centerElement" *ngFor="let module of modules"
-                  (click)="showMeasurements(module)">{{module.name}}</mat-card>
+        <mat-card class="centerElement moduleCard" *ngFor="let module of modules"
+                  (click)="showSensors(module)">{{module.name}}</mat-card>
       </div>
     </div>
     <div *ngIf="boolFlagAdd">
