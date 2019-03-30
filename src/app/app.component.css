@@ -1,7 +1,23 @@
 .routerBar{
-  width: 100%;
-  display: flex;
+  width: 41%;
+  display: block;
+  direction: rtl;
+}
+.titleWrapper{
+  width: 59%;
 }
 .routerButton{
   margin: 1%;
+  height: 40%;
 }
+.appTitle{
+  float: right;
+  text-align: right;
+  margin-left: auto;
+  margin-right: auto;
+}
+.titleBar{
+  width: 100%;
+  display: flex;
+}
+

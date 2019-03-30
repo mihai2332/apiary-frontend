@@ -1,8 +1,15 @@
-<div routerLinkActive="active" class="routerBar">
-  <button mat-raised-button routerLink="home" class="routerButton">Home</button>
-  <button mat-raised-button *ngIf="!isLoggedIn && !authority" routerLink="auth/login" class="routerButton">Login</button>
-  <button mat-raised-button *ngIf="!isLoggedIn && !authority" routerLink="signup" class="routerButton">Register</button>
-  <button mat-button *ngIf="isLoggedIn || authority" class="btn btn-secondary" (click)="logout()">Logout</button>
+<div class="titleBar">
+  <div class="titleWrapper"><img src="https://images.cooltext.com/5273949.png" width="269" height="91" alt="Apiary"
+                                 class="appTitle" (click)="goToHome()"/></div>
+  <div routerLinkActive="active" class="routerBar">
+    <button mat-button *ngIf="isLoggedIn || authority" class="btn btn-secondary routerButton" (click)="logout()">Logout
+    </button>
+    <button mat-raised-button *ngIf="!isLoggedIn && !authority" routerLink="signup" class="routerButton">Register
+    </button>
+    <button mat-raised-button *ngIf="!isLoggedIn && !authority" routerLink="auth/login" class="routerButton">Login
+    </button>
+    <button mat-raised-button routerLink="home" class="routerButton">Home</button>
+  </div>
 </div>
 
 <div class="container">
