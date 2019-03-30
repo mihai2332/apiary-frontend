@@ -27,4 +27,8 @@ export class MeasurementService {
   getMeasurementsWithinRange(sensorChart: SensorChart) {
     return this.http.post<Measurement[]>(this.URL + 'measurement', sensorChart);
   }
+
+  deleteModule(module: Module) {
+    return this.http.delete(this.URL + module.uuid);
+  }
 }

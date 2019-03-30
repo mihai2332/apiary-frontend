@@ -3,18 +3,29 @@
 
 
   <div *ngIf="!isLoading">
-    <button *ngIf="!boolFlagAdd" mat-mini-fab (click)="changeAddFlag(true)" class="addButton">+</button>
-    <button *ngIf="boolFlagAdd" mat-raised-button (click)="showModules()" [disabled]="isRequestInProgress" class="addButton">Show modules</button>
+    <button *ngIf="!boolFlagAdd" mat-mini-fab (click)="changeAddFlag(true)" class="floatRight">+</button>
+    <button *ngIf="boolFlagAdd" mat-raised-button (click)="showModules()" [disabled]="isRequestInProgress"
+            class="floatRight">Show modules
+    </button>
 
     <div *ngIf="!boolFlagAdd">
       <div *ngIf="modules.length > 0; else emptyModules">
         <h4 class="text-primary">Your modules:</h4>
-        <mat-card class="centerElement moduleCard" *ngFor="let module of modules"
-                  (click)="showSensors(module)">{{module.name}}</mat-card>
+        <mat-card *ngFor="let module of modules"
+                  class="centerElement moduleCard">
+          <mat-card-title class="cardTitle"
+                          (click)="showSensors(module)">
+            {{module.name}}
+          </mat-card-title>
+          <mat-card-content>
+            <button mat-button class="floatRight"><i class="material-icons" (click)="deleteModule(module)">delete</i></button>
+          </mat-card-content>
+        </mat-card>
       </div>
     </div>
     <div *ngIf="boolFlagAdd">
-      <app-add-module (requestFlag)="changeRequestFlag($event)" (isRequestInProgress)="disableButton($event)"></app-add-module>
+      <app-add-module (requestFlag)="changeRequestFlag($event)"
+                      (isRequestInProgress)="disableButton($event)"></app-add-module>
     </div>
     <br>
 

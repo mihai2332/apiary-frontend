@@ -63,4 +63,8 @@ export class HomeComponent implements OnInit {
   disableButton(event) {
     this.isRequestInProgress = event;
   }
+
+  deleteModule(module: Module) {
+    this.measurementService.deleteModule(module).subscribe();
+  }
 }

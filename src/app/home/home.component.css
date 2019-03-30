@@ -1,10 +1,12 @@
-.cardColor {
-  background-color: aqua;
-}
-
-.addButton {
+.floatRight {
   float: right;
 }
 .moduleCard{
   margin-bottom: 1%;
+  height: 35px;
+}
+.cardTitle{
+  float: left;
+  width: 86%;
+  height: 100%;
 }
