@@ -24,10 +24,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.currentUserInfo = {token: this.token.getToken()};
-    this.measurementService.getModules().subscribe(modules => {
-      this.modules = modules;
-      this.isLoading = false;
-    });
+    if (this.currentUserInfo.token) {
+      this.measurementService.getModules().subscribe(modules => {
+        this.modules = modules;
+        this.isLoading = false;
+      });
+    }
   }
 
   showSensors(module: Module) {
