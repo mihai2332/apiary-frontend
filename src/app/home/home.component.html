@@ -13,10 +13,12 @@
         <h4 class="text-primary">Your modules:</h4>
         <mat-card *ngFor="let module of modules"
                   class="centerElement moduleCard">
-          <mat-card-title class="cardTitle"
-                          (click)="showSensors(module)">
-            {{module.name}}
-          </mat-card-title>
+          <div class="cardTitle"
+               (click)="showSensors(module)">
+            <mat-card-title class="floatLeft">
+              {{module.name}}
+            </mat-card-title>
+          </div>
           <mat-card-content>
             <button mat-button class="floatRight"><i class="material-icons" (click)="deleteModule(module)">delete</i></button>
           </mat-card-content>
