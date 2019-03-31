@@ -1,6 +1,9 @@
 .floatRight {
   float: right;
 }
+.floatLeft{
+  float: left;
+}
 .moduleCard{
   margin-bottom: 1%;
   height: 35px;
