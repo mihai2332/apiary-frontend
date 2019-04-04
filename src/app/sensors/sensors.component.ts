@@ -36,4 +36,8 @@ export class SensorsComponent implements OnInit {
     this.router.navigate(['/sensor', this.uuid, sensor.sensorType]);
 
   }
+
+  goBack() {
+    this.router.navigate(['home']);
+  }
 }

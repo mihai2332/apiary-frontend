@@ -1,0 +1,7 @@
+.inputBar{
+  display: flex;
+  justify-content: space-between;
+}
+.button{
+  height: 35px;
+}

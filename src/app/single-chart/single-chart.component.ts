@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MeasurementService} from '../services/measurement.service';
 import {SensorChart} from '../model/SensorChart';
 import {Measurement} from '../model/Measurement';
@@ -21,6 +21,7 @@ export class SingleChartComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
+              private router: Router,
               private measurementService: MeasurementService,
               private token: TokenStorageService) {
   }
@@ -48,5 +49,9 @@ export class SingleChartComponent implements OnInit {
       this.measurements = measurements;
       this.isLoading = false;
     });
+  }
+
+  goBackToSensors() {
+    this.router.navigate(['module/' + this.moduleUUID]);
   }
 }
