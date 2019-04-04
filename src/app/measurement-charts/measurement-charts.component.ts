@@ -11,6 +11,7 @@ import {Measurement} from '../model/Measurement';
 export class MeasurementChartsComponent implements OnInit {
   @Input() measurements: Measurement[];
   @Input() sensorName: string;
+  @Input() maxValueYAxis: number;
 
   public lineChartData: ChartDataSets[] = [];
   public lineChartLabels: Label[] = [];
@@ -53,6 +54,7 @@ export class MeasurementChartsComponent implements OnInit {
     const chartData = {data: dataPoints, label: this.sensorName};
     this.lineChartData.push(chartData);
     this.lineChartLabels = labels;
+    this.options.scales.yAxes[0].ticks.max = this.maxValueYAxis;
   }
 
   private formatLabel(creationDate: string): string {

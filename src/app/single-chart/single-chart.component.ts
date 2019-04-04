@@ -54,4 +54,9 @@ export class SingleChartComponent implements OnInit {
   goBackToSensors() {
     this.router.navigate(['module/' + this.moduleUUID]);
   }
+
+  getMaxValueYAxis() {
+    const max = Math.max(...this.measurements.map(item => +item.value));
+    return max + ((max * 10) / 100);
+  }
 }

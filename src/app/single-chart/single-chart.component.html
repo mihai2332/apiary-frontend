@@ -17,7 +17,8 @@
   <app-loading-spinner *ngIf="authToken" [isLoading]="isLoading"></app-loading-spinner>
   <app-measurement-charts *ngIf="measurements.length > 0 && sensorName && !isLoading"
                           [measurements]="measurements"
-                          [sensorName]="sensorName">
+                          [sensorName]="sensorName"
+                          [maxValueYAxis]="getMaxValueYAxis()">
 
   </app-measurement-charts>
 </div>

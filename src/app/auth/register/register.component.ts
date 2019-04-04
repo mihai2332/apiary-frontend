@@ -1,8 +1,8 @@
 import {Component, Injector, OnInit} from '@angular/core';
-import {SignUpInfo} from '../auth/model/sigup-info';
-import {AuthService} from '../auth/auth.service';
+import {SignUpInfo} from '../model/sigup-info';
+import {AuthService} from '../auth.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {NotificationService} from '../services/notification.service';
+import {NotificationService} from '../../services/notification.service';
 import {Route, Router} from '@angular/router';
 
 @Component({

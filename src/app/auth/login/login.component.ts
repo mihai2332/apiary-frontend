@@ -1,10 +1,10 @@
 import {Component, Injector, OnInit} from '@angular/core';
-import {AuthLoginInfo} from '../auth/model/login-info';
-import {AuthService} from '../auth/auth.service';
-import {TokenStorageService} from '../auth/token-storage.service';
+import {AuthLoginInfo} from '../model/login-info';
+import {AuthService} from '../auth.service';
+import {TokenStorageService} from '../token-storage.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {NotificationService} from '../services/notification.service';
+import {NotificationService} from '../../services/notification.service';
 
 @Component({
   selector: 'app-login',
