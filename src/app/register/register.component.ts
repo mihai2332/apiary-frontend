@@ -3,6 +3,7 @@ import {SignUpInfo} from '../auth/model/sigup-info';
 import {AuthService} from '../auth/auth.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NotificationService} from '../services/notification.service';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private fb: FormBuilder,
-              private injector: Injector) {
+              private injector: Injector,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -82,5 +84,9 @@ export class RegisterComponent implements OnInit {
     return this.email.hasError('required') ? 'You must enter a value' :
       this.email.hasError('email') ? 'Not a valid email' :
         '';
+  }
+
+  goToLogin() {
+   this.router.navigate(['/auth/login']);
   }
 }
