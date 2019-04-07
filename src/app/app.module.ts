@@ -26,6 +26,7 @@ import { SingleChartComponent } from './single-chart/single-chart.component';
 import {ChartsModule} from 'ng2-charts';
 import { SensorsComponent } from './sensors/sensors.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { MeasurementRequestComponent } from './measurement-request/measurement-request.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     SingleChartComponent,
     SensorsComponent,
     LoadingSpinnerComponent,
+    MeasurementRequestComponent,
   ],
   imports: [
     BrowserModule,

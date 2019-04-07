@@ -6,6 +6,7 @@
               (click)="showChart(sensor)"
               class="centerElement">
       {{sensor.sensorType}}
+      <app-measurement-request [sensorName]="sensor.sensorType" [moduleUUID]="uuid"></app-measurement-request>
     </mat-card>
   </div>
 </div>
