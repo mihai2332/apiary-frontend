@@ -12,7 +12,8 @@ export class MeasurementRequestComponent implements OnInit {
   @Input() sensorName: string;
   measurements: Measurement[] = [];
 
-  constructor(private measurementService: MeasurementService) { }
+  constructor(private measurementService: MeasurementService) {
+  }
 
   ngOnInit() {
     this.measurementService.getDecimatedData(this.sensorName, this.moduleUUID).subscribe(measurements => {
@@ -24,6 +25,14 @@ export class MeasurementRequestComponent implements OnInit {
 
   getMaxValueYAxis() {
     const max = Math.max(...this.measurements.map(item => +item.value));
-    return max + ((max * 10) / 100);
+    if (max < 1000) {
+      return Math.round(Math.floor(max + ((max * 10) / 100)));
+    } else if (max > 1000 && max < 10000) {
+      return Math.round(Math.floor(max + ((max * 10) / 100)) / 100) * 100;
+    } else if (max > 10000 && max < 100000) {
+      return Math.round(Math.floor(max + ((max * 10) / 100)) / 1000) * 1000;
+    } else if (max > 100000) {
+      return Math.round(Math.floor(max + ((max * 10) / 100)) / 10000) * 10000;
+    }
   }
 }

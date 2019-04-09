@@ -1,4 +1,5 @@
-<app-measurement-charts *ngIf="measurements.length > 1"
+<app-measurement-charts class="minimalChart"
+                        *ngIf="measurements.length > 1"
                         [sensorName]="sensorName"
                         [measurements]="measurements"
                         [maxValueYAxis]="getMaxValueYAxis()">
