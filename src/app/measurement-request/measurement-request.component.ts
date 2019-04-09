@@ -16,8 +16,14 @@ export class MeasurementRequestComponent implements OnInit {
 
   ngOnInit() {
     this.measurementService.getDecimatedData(this.sensorName, this.moduleUUID).subscribe(measurements => {
-      this.measurements = measurements;
+      this.measurements = measurements.sort((a, b) => {
+        return new Date(a.creationDate).getTime() - new Date(b.creationDate).getTime();
+      });
     });
   }
 
+  getMaxValueYAxis() {
+    const max = Math.max(...this.measurements.map(item => +item.value));
+    return max + ((max * 10) / 100);
+  }
 }
