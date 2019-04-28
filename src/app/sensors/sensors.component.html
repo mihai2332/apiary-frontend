@@ -1,10 +1,10 @@
 <app-loading-spinner *ngIf="authToken" [isLoading]="isLoading"></app-loading-spinner>
 <div *ngIf="!isLoading">
 <button mat-button (click)="goBack()">Back</button>
-  <div *ngIf="authToken; else loggedOut">
+  <div *ngIf="authToken; else loggedOut" class="grid">
     <mat-card *ngFor="let sensor of sensors"
               (click)="showChart(sensor)"
-              class="centerElement">
+              class="gridElement">
       {{sensor.sensorType}}
       <app-measurement-request [sensorName]="sensor.sensorType" [moduleUUID]="uuid"></app-measurement-request>
     </mat-card>

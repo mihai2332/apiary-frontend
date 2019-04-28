@@ -16,6 +16,8 @@ export class MeasurementChartsComponent implements OnInit {
   public lineChartData: ChartDataSets[] = [];
   public lineChartLabels: Label[] = [];
   public options: any = {
+    // responsive: true,
+    // maintainAspectRatio: false,
     scales : {
       yAxes: [{
         ticks: {
