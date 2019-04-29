@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {AdminTableDTO} from '../model/AdminTableDTO';
 import {MatTable} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -14,7 +15,8 @@ export class AdminDashboardComponent implements OnInit {
   dataSource: AdminTableDTO[] = [];
   tempDataSource: AdminTableDTO[] = [];
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -33,5 +35,9 @@ export class AdminDashboardComponent implements OnInit {
       this.dataSource.splice(this.dataSource.indexOf(adminTableDTO), 1);
       this.dataSource = [...this.dataSource];
     });
+  }
+
+  addNewUser() {
+    this.router.navigate(['/signup']);
   }
 }

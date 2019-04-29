@@ -11,3 +11,9 @@
   width: 60%;
   margin-bottom: 0.5%;
 }
+.floatRight {
+  float: right;
+}
+.floatLeft{
+  float: left;
+}
