@@ -28,7 +28,10 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  deleteUser(username: string) {
-    this.userService.deleteUser(username).subscribe(_ => this.table.renderRows());
+  deleteUser(adminTableDTO: AdminTableDTO) {
+    this.userService.deleteUser(adminTableDTO.user.username).subscribe(_ => {
+      this.dataSource.splice(this.dataSource.indexOf(adminTableDTO), 1);
+      this.dataSource = [...this.dataSource];
+    });
   }
 }
