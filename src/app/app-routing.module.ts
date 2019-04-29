@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
-import {MeasurementChartsComponent} from './measurement-charts/measurement-charts.component';
 import {SingleChartComponent} from './single-chart/single-chart.component';
 import {SensorsComponent} from './sensors/sensors.component';
+import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
   {
@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'auth/login',
     component: LoginComponent
+  },
+  {
+    path: 'admin',
+    component: AdminDashboardComponent
   },
   {
     path: 'signup',
@@ -39,4 +43,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

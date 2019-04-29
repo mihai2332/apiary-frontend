@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {UserDTO} from '../model/UserDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,17 @@ export class UserService {
 
   getAdminBoard(): Observable<string> {
     return this.http.get(this.adminUrl, { responseType: 'text' });
+  }
+
+  getAllUsers() {
+    return this.http.get<UserDTO[]>('http://localhost:8080/user');
+  }
+
+  getModuleCount(username: string) {
+    return this.http.post<number>('http://localhost:8080/user/count', username);
+  }
+
+  deleteUser(username: string) {
+    return this.http.delete('http://localhost:8080/user/' + username);
   }
 }

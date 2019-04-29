@@ -3,6 +3,7 @@ import {TokenStorageService} from '../auth/token-storage.service';
 import {MeasurementService} from '../services/measurement.service';
 import {Module} from '../model/Module';
 import {Router} from '@angular/router';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentUserInfo = {token: this.token.getToken()};
+    this.currentUserInfo = {
+      token: this.token.getToken(),
+      authorities: this.token.getAuthorities()
+    };
+    // console.log(this.token.getAuthorities());
     if (this.currentUserInfo.token) {
       this.measurementService.getModules().subscribe(modules => {
         this.modules = modules;
@@ -72,5 +77,9 @@ export class HomeComponent implements OnInit {
         this.isLoading = false;
       });
     });
+  }
+
+  showAllUsers() {
+    this.router.navigate(['/admin']);
   }
 }
