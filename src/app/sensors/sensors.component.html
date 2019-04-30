@@ -6,9 +6,10 @@
               class="gridElement">
       {{sensor.sensorType}}
       <button mat-raised-button class="floatRight"><i class="material-icons" (click)="deleteSensor(sensor)">delete</i></button>
-      <app-measurement-request [sensorName]="sensor.sensorType"
+      <app-measurement-request *ngIf="!isDeleting" [sensorName]="sensor.sensorType"
                                [moduleUUID]="uuid"
                                (click)="showChart(sensor)"></app-measurement-request>
+      <app-loading-spinner *ngIf="isDeleting" [isLoading]="isDeleting"></app-loading-spinner>
     </mat-card>
   </div>
 </div>

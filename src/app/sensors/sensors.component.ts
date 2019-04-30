@@ -14,6 +14,7 @@ export class SensorsComponent implements OnInit {
   sensors: Sensor[] = [];
   authToken: any;
   isLoading = true;
+  isDeleting = false;
 
   constructor(private route: ActivatedRoute,
               private token: TokenStorageService,
@@ -42,8 +43,10 @@ export class SensorsComponent implements OnInit {
   }
 
   deleteSensor(sensor: Sensor) {
+    this.isDeleting = true;
     this.measurementService.deleteSensor(this.uuid, sensor).subscribe(_ => {
       this.sensors.splice(this.sensors.indexOf(sensor), 1);
+      this.isDeleting = false;
     });
   }
 }
