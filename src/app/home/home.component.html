@@ -2,6 +2,7 @@
 <div *ngIf="currentUserInfo.token; else loggedOut">
 
   <button mat-raised-button *ngIf="currentUserInfo.authorities.includes('ROLE_ADMIN')" (click)="showAllUsers()">Admin Dashboard</button>
+  <h3 class="centerElement">Hi, {{currentUserInfo.username}}</h3>
 
   <div *ngIf="!isLoading">
     <button *ngIf="!boolFlagAdd" mat-mini-fab (click)="changeAddFlag(true)" class="floatRight">+</button>
