@@ -35,4 +35,8 @@ export class MeasurementService {
   getDecimatedData(sensor: string, module: string) {
     return this.http.post<Measurement[]>(this.URL + 'measurement' + '/all', {moduleUUID: module, sensorName: sensor});
   }
+
+  deleteSensor(uuid: string, sensor: Sensor) {
+    return this.http.delete(this.URL + uuid + '/' + sensor.sensorType);
+  }
 }

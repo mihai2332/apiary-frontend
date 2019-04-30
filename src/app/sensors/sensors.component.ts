@@ -40,4 +40,10 @@ export class SensorsComponent implements OnInit {
   goBack() {
     this.router.navigate(['home']);
   }
+
+  deleteSensor(sensor: Sensor) {
+    this.measurementService.deleteSensor(this.uuid, sensor).subscribe(_ => {
+      this.sensors.splice(this.sensors.indexOf(sensor), 1);
+    });
+  }
 }

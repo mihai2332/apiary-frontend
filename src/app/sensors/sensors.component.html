@@ -3,10 +3,12 @@
 <button mat-button (click)="goBack()">Back</button>
   <div *ngIf="authToken; else loggedOut" class="grid">
     <mat-card *ngFor="let sensor of sensors"
-              (click)="showChart(sensor)"
               class="gridElement">
       {{sensor.sensorType}}
-      <app-measurement-request [sensorName]="sensor.sensorType" [moduleUUID]="uuid"></app-measurement-request>
+      <button mat-raised-button class="floatRight"><i class="material-icons" (click)="deleteSensor(sensor)">delete</i></button>
+      <app-measurement-request [sensorName]="sensor.sensorType"
+                               [moduleUUID]="uuid"
+                               (click)="showChart(sensor)"></app-measurement-request>
     </mat-card>
   </div>
 </div>
