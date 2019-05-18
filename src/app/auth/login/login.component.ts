@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
               private tokenStorage: TokenStorageService,
               private fb: FormBuilder,
               private router: Router,
-              private injector: Injector) {
+              private injector: Injector,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
@@ -68,6 +69,7 @@ export class LoginComponent implements OnInit {
         this.errorMessage = error.error.message;
         this.authService.isLoggedIn.emit(false);
         this.isLoginFailed = true;
+        this.notificationService.notify('Wrong credentials');
       }
     );
   }
