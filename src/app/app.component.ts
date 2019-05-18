@@ -44,4 +44,8 @@ export class AppComponent implements OnInit {
   goToHome() {
     this.router.navigate(['/home']);
   }
+
+  goToAbout() {
+    this.router.navigate(['/about']);
+  }
 }

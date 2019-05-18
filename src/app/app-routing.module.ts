@@ -6,6 +6,7 @@ import {RegisterComponent} from './auth/register/register.component';
 import {SingleChartComponent} from './single-chart/single-chart.component';
 import {SensorsComponent} from './sensors/sensors.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
+import {AboutComponent} from './about/about.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'sensor/:uuid/:name',
     component: SingleChartComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   },
   {
     path: '',

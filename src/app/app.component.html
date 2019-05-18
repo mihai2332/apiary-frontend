@@ -4,7 +4,9 @@
   <div routerLinkActive="active" class="routerBar">
     <button mat-button *ngIf="isLoggedIn || authority" class="btn btn-secondary routerButton" (click)="logout()">Logout
     </button>
-    <button mat-button *ngIf="!isLoggedIn && !authority" routerLink="signup" class="routerButton">Register
+    <button mat-button class="btn btn-secondary routerButton" (click)="goToAbout()">About
+    </button>
+    <button mat-raised-button *ngIf="!isLoggedIn && !authority" routerLink="signup" class="routerButton">Register
     </button>
     <button mat-raised-button *ngIf="!isLoggedIn && !authority" routerLink="auth/login" class="routerButton">Login
     </button>

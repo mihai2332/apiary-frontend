@@ -28,6 +28,7 @@ import { SensorsComponent } from './sensors/sensors.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { MeasurementRequestComponent } from './measurement-request/measurement-request.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     LoadingSpinnerComponent,
     MeasurementRequestComponent,
     AdminDashboardComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
